@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 
 type SearchInputType = {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     paddingHorizontal: 10,
     alignSelf: 'center',
-    borderRadius: 5,
+    borderRadius: 2,
   },
 });
 

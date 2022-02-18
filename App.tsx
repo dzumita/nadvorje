@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
   StyleSheet,
@@ -8,18 +8,29 @@ import {
   View,
   ActivityIndicator,
 } from 'react-native';
+import * as Localization from 'expo-localization';
+import i18n from 'i18n-js';
 
 import SearchInput from './components/SearchInput';
+import LocalePanel from './components/LocalePanel';
 import { fetchLocationId, fetchWeather } from './utils/api';
-import getWeatherFromAbbr from './utils/getWeatherFromAbbr'
+import translations from './translations';
+
+i18n.translations = translations;
+i18n.fallbacks = true;
 
 const App = () => {
-  const [location, setLocation] = useState('Enter a city');
-  const [weather, setWeather] = useState('❔ Unknown ❔');
+  const [locale, setLocale] = useState(Localization.locale);
+  const [location, setLocation] = useState('Minsk');
+  const [weatherAbbr, setWeatherAbbr] = useState('sn');
   const [temperature, setTemperature] = useState(0);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+
+  i18n.locale = locale;
+
+  const changeLocale = (newLocale: string) => setLocale(newLocale);
 
   const handleUpdateLocation = async (city: string) => {
     if (!city) return;
@@ -27,10 +38,12 @@ const App = () => {
     setLoading(true);
     try {
       const locationId = await fetchLocationId(city);
-      const { location, temperature, weatherAbbr } = await fetchWeather(locationId);
+      const { location, temperature, weatherAbbr } = await fetchWeather(
+        locationId
+      );
 
       setLocation(location);
-      setWeather(getWeatherFromAbbr(weatherAbbr));
+      setWeatherAbbr(weatherAbbr);
       setTemperature(temperature);
 
       setError(false);
@@ -49,7 +62,7 @@ const App = () => {
         <View>
           {error && (
             <Text style={[styles.smallText, styles.textStyle]}>
-              Could not load weather, please try a different city.
+              {i18n.t('error')}
             </Text>
           )}
 
@@ -59,7 +72,7 @@ const App = () => {
                 {location}
               </Text>
               <Text style={[styles.smallText, styles.textStyle]}>
-                {weather}
+                {i18n.t(`weather.${weatherAbbr}`)}
               </Text>
               <Text style={[styles.largeText, styles.textStyle]}>
                 {`${Math.round(temperature)}°`}
@@ -67,11 +80,15 @@ const App = () => {
             </View>
           )}
           <SearchInput
-            placeholder="Search any city"
+            placeholder={i18n.t('searchPlaceholder')}
             onSubmit={handleUpdateLocation}
           />
         </View>
       )}
+      <LocalePanel
+        changeLocale={changeLocale}
+        currentLocale={locale as keyof typeof translations}
+      />
     </KeyboardAvoidingView>
   );
 };
