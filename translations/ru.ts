@@ -13,6 +13,13 @@ const ru = {
     lc: '🌤️ Облачно 🌤️',
     c: '☀️ Ясна ☀️',
   },
+  navigator: {
+    weather: 'Погода',
+    settings: 'Настройки',
+  },
+  settings: {
+    language: 'Язык:',
+  },
 };
 
 export default ru;

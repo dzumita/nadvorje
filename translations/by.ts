@@ -14,6 +14,13 @@ const by = {
     lc: '🌤️ Хмарнасць 🌤️',
     c: '☀️ Clear ☀️',
   },
+  navigator: {
+    weather: "Надвор'е",
+    settings: 'Налады',
+  },
+  settings: {
+    language: 'Мова:',
+  },
 };
 
 export default by;

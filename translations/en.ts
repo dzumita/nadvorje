@@ -13,6 +13,13 @@ const en = {
     lc: '🌤️ Light Cloud 🌤️',
     c: '☀️ Clear ☀️',
   },
+  navigator: {
+    weather: 'Weather',
+    settings: 'Settings',
+  },
+  settings: {
+    language: 'Language:'
+  }
 };
 
 export default en;

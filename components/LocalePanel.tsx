@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import { StyleSheet, View, Button, Text } from 'react-native';
 
 import translations from '../translations';
 
-type LocalePanelType = {
+export type LocalePanelType = {
   changeLocale: (locale: string) => void;
   currentLocale: keyof typeof translations;
 };
@@ -26,12 +26,10 @@ const LocalePanel = ({ changeLocale, currentLocale }: LocalePanelType) => (
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    bottom: 30,
     flexDirection: 'row',
   },
   gap: {
-    width: 10
+    width: 10,
   },
 });
 
