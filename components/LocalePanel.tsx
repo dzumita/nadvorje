@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { StyleSheet, View, Button, Text } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 
 import translations from '../translations';
 

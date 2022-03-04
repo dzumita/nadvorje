@@ -20,6 +20,7 @@ const by = {
   },
   settings: {
     language: 'Мова:',
+    theme: 'Рэжым Тэмы:',
   },
 };
 

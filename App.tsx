@@ -11,8 +11,8 @@ import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 
 import translations from './translations';
-import NadvorjePage from './pages/nadvorje';
-import SettingsPage from './pages/settings';
+import NadvorjePage from './pages/Nadvorje';
+import SettingsPage from './pages/Settings';
 import colors from './constans/colors';
 import { LocalePanelType } from './components/LocalePanel';
 
@@ -22,14 +22,20 @@ i18n.translations = translations;
 i18n.fallbacks = true;
 
 const App = () => {
+  const [theme, setTheme] = useState('dark');
   const [locale, setLocale] = useState(Localization.locale);
   i18n.locale = locale;
   const changeLocale = (newLocale: string) => setLocale(newLocale);
 
+  const getCurrentStyles = (theme: string) =>
+    theme === 'dark' ? darkScreenStyles : lightScreenStyles;
+
   return (
     <NavigationContainer>
-      <StatusBar style="light" />
-      <Navigator screenOptions={screenStyles as DrawerNavigationOptions}>
+      <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
+      <Navigator
+        screenOptions={getCurrentStyles(theme) as DrawerNavigationOptions}
+      >
         <Screen
           name="Weather"
           options={{
@@ -50,6 +56,8 @@ const App = () => {
             <SettingsPage
               currentLocale={locale as LocalePanelType['currentLocale']}
               changeLocale={changeLocale}
+              currentTheme={theme}
+              changeTheme={setTheme}
             />
           )}
         </Screen>
@@ -58,7 +66,7 @@ const App = () => {
   );
 };
 
-const screenStyles = {
+const darkScreenStyles = {
   drawerItemStyle: {
     color: colors.white,
   },
@@ -77,6 +85,27 @@ const screenStyles = {
     color: colors.white,
   },
   headerTintColor: colors.white,
+};
+
+const lightScreenStyles = {
+  drawerItemStyle: {
+    color: colors.dark,
+  },
+  drawerActiveTintColor: colors.dark,
+  drawerActiveBackgroundColor: 'transparent',
+  drawerInactiveTintColor: colors.dark,
+  drawerInactiveBackgroundColor: 'transparent',
+  drawerStyle: {
+    backgroundColor: colors.white,
+  },
+  headerTitleAlign: 'center',
+  headerStyle: {
+    backgroundColor: colors.white,
+  },
+  headerTitleStyle: {
+    color: colors.dark,
+  },
+  headerTintColor: colors.dark,
 };
 
 export default App;

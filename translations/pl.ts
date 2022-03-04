@@ -19,6 +19,7 @@ const pl = {
   },
   settings: {
     language: 'Język:',
+    theme: 'Tryb Motywu:',
   },
 };
 

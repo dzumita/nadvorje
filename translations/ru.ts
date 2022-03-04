@@ -19,6 +19,7 @@ const ru = {
   },
   settings: {
     language: 'Язык:',
+    theme: 'Тема:',
   },
 };
 

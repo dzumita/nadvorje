@@ -18,8 +18,9 @@ const en = {
     settings: 'Settings',
   },
   settings: {
-    language: 'Language:'
-  }
+    language: 'Language:',
+    theme: 'Theme Mode:',
+  },
 };
 
 export default en;

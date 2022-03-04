@@ -19,6 +19,7 @@ const ua = {
   },
   settings: {
     language: 'Мова:',
+    theme: 'Режим Теми:',
   },
 };
 
