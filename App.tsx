@@ -5,7 +5,6 @@ import {
   createDrawerNavigator,
   DrawerNavigationOptions,
 } from '@react-navigation/drawer';
-import { StatusBar } from 'expo-status-bar';
 import { Text } from 'react-native';
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
@@ -13,8 +12,10 @@ import i18n from 'i18n-js';
 import translations from './translations';
 import NadvorjePage from './pages/Nadvorje';
 import SettingsPage from './pages/Settings';
-import colors from './constans/colors';
 import { LocalePanelType } from './components/LocalePanel';
+import colors from './constans/colors';
+import useTheme from './hooks/useTheme';
+import { ThemeProvider } from './components/ThemeProvider';
 
 const { Screen, Navigator } = createDrawerNavigator();
 
@@ -22,90 +23,90 @@ i18n.translations = translations;
 i18n.fallbacks = true;
 
 const App = () => {
-  const [theme, setTheme] = useState('dark');
+  const { theme } = useTheme();
   const [locale, setLocale] = useState(Localization.locale);
-  i18n.locale = locale;
-  const changeLocale = (newLocale: string) => setLocale(newLocale);
 
-  const getCurrentStyles = (theme: string) =>
-    theme === 'dark' ? darkScreenStyles : lightScreenStyles;
+  i18n.locale = locale;
+
+  console.log('app: ', theme);
 
   return (
-    <NavigationContainer>
-      <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
-      <Navigator
-        screenOptions={getCurrentStyles(theme) as DrawerNavigationOptions}
-      >
-        <Screen
-          name="Weather"
-          options={{
-            title: i18n.t('navigator.weather'),
-            drawerIcon: () => <Text>☁️</Text>,
-          }}
+    <ThemeProvider>
+      <NavigationContainer>
+        <Navigator
+          screenOptions={screenStyles[theme] as DrawerNavigationOptions}
         >
-          {() => <NadvorjePage />}
-        </Screen>
-        <Screen
-          name="Settings"
-          options={{
-            title: i18n.t('navigator.settings'),
-            drawerIcon: () => <Text>⚙️</Text>,
-          }}
-        >
-          {() => (
-            <SettingsPage
-              currentLocale={locale as LocalePanelType['currentLocale']}
-              changeLocale={changeLocale}
-              currentTheme={theme}
-              changeTheme={setTheme}
-            />
-          )}
-        </Screen>
-      </Navigator>
-    </NavigationContainer>
+          <Screen
+            name="Weather"
+            options={{
+              title: i18n.t('navigator.weather'),
+              drawerIcon: () => <Text>☁️</Text>,
+            }}
+          >
+            {() => <NadvorjePage />}
+          </Screen>
+          <Screen
+            name="Settings"
+            options={{
+              title: i18n.t('navigator.settings'),
+              drawerIcon: () => <Text>⚙️</Text>,
+            }}
+          >
+            {() => (
+              <SettingsPage
+                currentLocale={locale as LocalePanelType['currentLocale']}
+                changeLocale={setLocale}
+              />
+            )}
+          </Screen>
+        </Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
   );
 };
 
-const darkScreenStyles = {
-  drawerItemStyle: {
-    color: colors.white,
+const screenStyles = {
+  dark: {
+    drawerItemStyle: {
+      color: colors.white,
+    },
+    drawerActiveTintColor: colors.white,
+    drawerActiveBackgroundColor: 'transparent',
+    drawerInactiveTintColor: colors.whiteOpacity,
+    drawerInactiveBackgroundColor: 'transparent',
+    drawerStyle: {
+      backgroundColor: colors.lightDark,
+    },
+    headerTitleAlign: 'center',
+    headerStyle: {
+      backgroundColor: colors.lightDark,
+    },
+    headerTitleStyle: {
+      color: colors.white,
+    },
+    headerTintColor: colors.white,
   },
-  drawerActiveTintColor: colors.white,
-  drawerActiveBackgroundColor: 'transparent',
-  drawerInactiveTintColor: colors.whiteOpacity,
-  drawerInactiveBackgroundColor: 'transparent',
-  drawerStyle: {
-    backgroundColor: colors.lightDark,
-  },
-  headerTitleAlign: 'center',
-  headerStyle: {
-    backgroundColor: colors.lightDark,
-  },
-  headerTitleStyle: {
-    color: colors.white,
-  },
-  headerTintColor: colors.white,
-};
 
-const lightScreenStyles = {
-  drawerItemStyle: {
-    color: colors.dark,
+  light: {
+    drawerItemStyle: {
+      color: colors.dark,
+    },
+    drawerActiveTintColor: colors.dark,
+    drawerActiveBackgroundColor: 'transparent',
+    drawerInactiveTintColor: colors.dark,
+    drawerInactiveBackgroundColor: 'transparent',
+    drawerStyle: {
+      backgroundColor: colors.white,
+    },
+    headerTitleAlign: 'center',
+    headerStyle: {
+      backgroundColor: colors.white,
+    },
+    headerTitleStyle: {
+      color: colors.dark,
+    },
+    headerTintColor: colors.dark,
   },
-  drawerActiveTintColor: colors.dark,
-  drawerActiveBackgroundColor: 'transparent',
-  drawerInactiveTintColor: colors.dark,
-  drawerInactiveBackgroundColor: 'transparent',
-  drawerStyle: {
-    backgroundColor: colors.white,
-  },
-  headerTitleAlign: 'center',
-  headerStyle: {
-    backgroundColor: colors.white,
-  },
-  headerTitleStyle: {
-    color: colors.dark,
-  },
-  headerTintColor: colors.dark,
 };
 
 export default App;
