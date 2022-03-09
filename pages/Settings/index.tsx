@@ -10,6 +10,7 @@ import styles from './styles';
 
 const SettingsPage = ({ currentLocale, changeLocale }: any) => {
   const { theme, setTheme } = useTheme();
+  console.log(styles[theme].container);
 
   return (
     <View style={styles[theme].container}>
