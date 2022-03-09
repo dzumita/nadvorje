@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Platform, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import i18n from 'i18n-js';
 
-import LocalePanel, { LocalePanelType } from '../components/LocalePanel';
-import ThemePanel from '../components/ThemePanel';
+import LocalePanel from '../../components/LocalPanel';
+import ThemePanel from '../../components/ThemePanel';
+
+import useStyles from './styles';
 
 const SettingsPage = ({
   currentLocale,
@@ -11,6 +13,8 @@ const SettingsPage = ({
   currentTheme,
   changeTheme,
 }: any) => {
+  const styles = useStyles();
+
   return (
     <View style={styles.container}>
       <View>
@@ -28,25 +32,5 @@ const SettingsPage = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    backgroundColor: '#212122',
-    paddingTop: 30,
-    paddingLeft: 30,
-  },
-  titleOption: {
-    fontFamily: Platform.OS === 'ios' ? 'AvenirNext-Regular' : 'Roboto',
-    color: 'white',
-    fontSize: 20,
-    marginBottom: 10,
-  },
-  gap: {
-    height: 30,
-  },
-});
 
 export default SettingsPage;

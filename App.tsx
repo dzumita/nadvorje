@@ -13,8 +13,8 @@ import i18n from 'i18n-js';
 import translations from './translations';
 import NadvorjePage from './pages/Nadvorje';
 import SettingsPage from './pages/Settings';
-import colors from './constans/colors';
 import { LocalePanelType } from './components/LocalePanel';
+import useTheme from './hooks/useTheme';
 
 const { Screen, Navigator } = createDrawerNavigator();
 
@@ -22,20 +22,17 @@ i18n.translations = translations;
 i18n.fallbacks = true;
 
 const App = () => {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useTheme();
   const [locale, setLocale] = useState(Localization.locale);
   i18n.locale = locale;
   const changeLocale = (newLocale: string) => setLocale(newLocale);
 
-  const getCurrentStyles = (theme: string) =>
-    theme === 'dark' ? darkScreenStyles : lightScreenStyles;
+  const optionsStyles = getOptionsStyles(theme);
 
   return (
-    <NavigationContainer>
-      <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
-      <Navigator
-        screenOptions={getCurrentStyles(theme) as DrawerNavigationOptions}
-      >
+    <NavigationContainer theme={theme}>
+      <StatusBar style={theme.dark ? 'light' : 'dark'} />
+      <Navigator screenOptions={optionsStyles as DrawerNavigationOptions}>
         <Screen
           name="Weather"
           options={{
@@ -56,7 +53,7 @@ const App = () => {
             <SettingsPage
               currentLocale={locale as LocalePanelType['currentLocale']}
               changeLocale={changeLocale}
-              currentTheme={theme}
+              currentTheme={theme.name}
               changeTheme={setTheme}
             />
           )}
@@ -66,46 +63,27 @@ const App = () => {
   );
 };
 
-const darkScreenStyles = {
-  drawerItemStyle: {
-    color: colors.white,
-  },
-  drawerActiveTintColor: colors.white,
-  drawerActiveBackgroundColor: 'transparent',
-  drawerInactiveTintColor: colors.whiteOpacity,
-  drawerInactiveBackgroundColor: 'transparent',
-  drawerStyle: {
-    backgroundColor: colors.lightDark,
-  },
-  headerTitleAlign: 'center',
-  headerStyle: {
-    backgroundColor: colors.lightDark,
-  },
-  headerTitleStyle: {
-    color: colors.white,
-  },
-  headerTintColor: colors.white,
-};
-
-const lightScreenStyles = {
-  drawerItemStyle: {
-    color: colors.dark,
-  },
-  drawerActiveTintColor: colors.dark,
-  drawerActiveBackgroundColor: 'transparent',
-  drawerInactiveTintColor: colors.dark,
-  drawerInactiveBackgroundColor: 'transparent',
-  drawerStyle: {
-    backgroundColor: colors.white,
-  },
-  headerTitleAlign: 'center',
-  headerStyle: {
-    backgroundColor: colors.white,
-  },
-  headerTitleStyle: {
-    color: colors.dark,
-  },
-  headerTintColor: colors.dark,
+const getOptionsStyles = ({ colors }: any) => {
+  return {
+    drawerItemStyle: {
+      color: colors.white,
+    },
+    drawerActiveTintColor: colors.fontPrimary,
+    drawerActiveBackgroundColor: 'transparent',
+    drawerInactiveTintColor: colors.fontSecondary,
+    drawerInactiveBackgroundColor: 'transparent',
+    drawerStyle: {
+      backgroundColor: colors.bgSecondary,
+    },
+    headerTitleAlign: 'center',
+    headerStyle: {
+      backgroundColor: colors.bgSecondary,
+    },
+    headerTitleStyle: {
+      color: colors.fontPrimary,
+    },
+    headerTintColor: colors.fontPrimary,
+  };
 };
 
 export default App;
