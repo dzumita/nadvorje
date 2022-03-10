@@ -5,20 +5,20 @@ const getStyles = ({ colors }: any) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
+      justifyContent: 'center',
+      alignItems: 'center',
       backgroundColor: colors.bgPrimary,
-      paddingTop: 30,
-      paddingLeft: 30,
     },
-    titleOption: {
+    textStyle: {
+      textAlign: 'center',
       fontFamily: Platform.OS === 'ios' ? 'AvenirNext-Regular' : 'Roboto',
       color: colors.fontPrimary,
-      fontSize: 20,
-      marginBottom: 10,
     },
-    gap: {
-      height: 30,
+    largeText: {
+      fontSize: 44,
+    },
+    smallText: {
+      fontSize: 18,
     },
   });
 

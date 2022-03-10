@@ -1,7 +1,13 @@
-import React, { useContext } from 'react';
+import { useState } from 'react';
+import { useColorScheme } from 'react-native';
 
-import { ThemeContext } from '../components/ThemeProvider';
+import theme from '../theme';
+import { useThemeType } from './types';
 
-const useTheme = () => useContext(ThemeContext);
+const useTheme = (): useThemeType => {
+  const [currentTheme, setCurrentTheme] = useState(useColorScheme());
+
+  return [theme[currentTheme], setCurrentTheme];
+};
 
 export default useTheme;

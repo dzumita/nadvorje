@@ -2,33 +2,32 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import i18n from 'i18n-js';
 
-import useTheme from '../../hooks/useTheme';
-import LocalePanel from '../../components/LocalePanel';
+import LocalePanel from '../../components/LocalPanel';
 import ThemePanel from '../../components/ThemePanel';
 
-import styles from './styles';
+import useStyles from './styles';
 
-const SettingsPage = ({ currentLocale, changeLocale }: any) => {
-  const { theme, setTheme } = useTheme();
-  console.log(styles[theme].container);
+const SettingsPage = ({
+  currentLocale,
+  changeLocale,
+  currentTheme,
+  changeTheme,
+}: any) => {
+  const styles = useStyles();
 
   return (
-    <View style={styles[theme].container}>
+    <View style={styles.container}>
       <View>
-        <Text style={styles[theme].titleOption}>
-          {i18n.t('settings.language')}
-        </Text>
+        <Text style={styles.titleOption}>{i18n.t('settings.language')}</Text>
         <LocalePanel
           changeLocale={changeLocale}
           currentLocale={currentLocale}
         />
       </View>
-      <View style={styles[theme].gap} />
+      <View style={styles.gap} />
       <View>
-        <Text style={styles[theme].titleOption}>
-          {i18n.t('settings.theme')}
-        </Text>
-        <ThemePanel currentTheme={theme} changeTheme={setTheme} />
+        <Text style={styles.titleOption}>{i18n.t('settings.theme')}</Text>
+        <ThemePanel currentTheme={currentTheme} changeTheme={changeTheme} />
       </View>
     </View>
   );

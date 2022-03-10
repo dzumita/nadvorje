@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import {
-  StyleSheet,
   Text,
   KeyboardAvoidingView,
-  Platform,
   View,
   ActivityIndicator,
 } from 'react-native';
 import i18n from 'i18n-js';
 
-import SearchInput from '../components/SearchInput';
-import { fetchLocationId, fetchWeather } from '../utils/api';
+import SearchInput from '../../components/SearchInput';
+import { fetchLocationId, fetchWeather } from '../../utils/api';
+
+import useStyles from './styles';
 
 const NadvorjePage = () => {
+  const styles = useStyles();
+
   const [location, setLocation] = useState('Minsk');
   const [weatherAbbr, setWeatherAbbr] = useState('sn');
   const [temperature, setTemperature] = useState(0);
@@ -75,25 +77,5 @@ const NadvorjePage = () => {
     </KeyboardAvoidingView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#212122',
-  },
-  textStyle: {
-    textAlign: 'center',
-    fontFamily: Platform.OS === 'ios' ? 'AvenirNext-Regular' : 'Roboto',
-    color: 'white',
-  },
-  largeText: {
-    fontSize: 44,
-  },
-  smallText: {
-    fontSize: 18,
-  },
-});
 
 export default NadvorjePage;

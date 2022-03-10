@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import { TextInput } from 'react-native';
 
-type SearchInputType = {
-  placeholder: string;
-  defaultValue?: string | undefined;
-  onSubmit: (value: string) => void;
-};
+import { SearchInputType } from './types';
+
+import useStyles from './styles';
 
 const SearchInput = ({
   placeholder,
   defaultValue,
-  onSubmit
+  onSubmit,
 }: SearchInputType) => {
+  const styles = useStyles();
+
   const [value, setValue] = useState(defaultValue);
 
   const handleChangeText = (newValue: string): void => setValue(newValue);
@@ -19,7 +19,7 @@ const SearchInput = ({
     if (!value) return;
 
     onSubmit(value);
-    setValue('')
+    setValue('');
   };
 
   return (
@@ -27,28 +27,12 @@ const SearchInput = ({
       value={value}
       autoCorrect={false}
       placeholder={placeholder}
-      placeholderTextColor="white"
-      underlineColorAndroid="transparent"
-      style={styles.textInput}
       clearButtonMode="always"
       onChangeText={handleChangeText}
       onSubmitEditing={handleSubmitEditing}
+      {...styles}
     />
   );
 };
-
-const styles = StyleSheet.create({
-  textInput: {
-    backgroundColor: '#666',
-    color: 'white',
-    height: 40,
-    width: 300,
-    marginTop: 20,
-    marginHorizontal: 20,
-    paddingHorizontal: 10,
-    alignSelf: 'center',
-    borderRadius: 2,
-  },
-});
 
 export default SearchInput;
