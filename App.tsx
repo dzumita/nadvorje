@@ -7,23 +7,19 @@ import {
 } from '@react-navigation/drawer';
 import { Text } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 
-import translations from './translations';
 import NadvorjePage from './pages/Nadvorje';
 import SettingsPage from './pages/Settings';
 import { LocalePanelType } from './components/LocalPanel/types';
 import useTheme from './hooks/useTheme';
+import useLocale from './hooks/useLocale';
 
 const { Screen, Navigator } = createDrawerNavigator();
 
-i18n.translations = translations;
-i18n.fallbacks = true;
-
 const App = () => {
   const [theme, setTheme] = useTheme();
-  const [locale, setLocale] = useState(Localization.locale);
+  const [locale, setLocale] = useLocale();
 
   const optionsStyles = getOptionsStyles(theme);
 
