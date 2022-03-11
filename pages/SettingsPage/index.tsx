@@ -6,13 +6,14 @@ import LocalePanel from '../../components/LocalPanel';
 import ThemePanel from '../../components/ThemePanel';
 
 import useSettingsPageStyles from './styles';
+import { SettingsPageProps } from './types';
 
 const SettingsPage = ({
   currentLocale,
   changeLocale,
   currentTheme,
   changeTheme,
-}: any) => {
+}: SettingsPageProps) => {
   const styles = useSettingsPageStyles();
 
   return (
