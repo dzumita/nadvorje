@@ -1,9 +1,9 @@
-import { Theme, ThemeNames } from '../theme/types';
+import { SizesConstant } from '../constans/types';
+import { Theme, ThemeNames, ThemeColors } from '../theme/types';
 import { LocaleNames } from '../translations/types';
 
-type useThemeFunction = () => [Theme, (ThemeName: ThemeNames) => void];
-type useLocaleFunction = () => [
-  LocaleNames, (LocaleName: LocaleNames) => void
-];
+type UseThemeFunction = () => [Theme, (ThemeName: ThemeNames) => void];
+type UseLocaleFunction = () => [LocaleNames, (LocaleName: LocaleNames) => void];
+type UseStylesCallback = (colors: ThemeColors, sizes: SizesConstant) => any;
 
-export { useThemeFunction, useLocaleFunction };
+export { UseThemeFunction, UseLocaleFunction, UseStylesCallback };

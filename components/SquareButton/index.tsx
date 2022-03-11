@@ -7,11 +7,11 @@ import {
   ViewStyle,
 } from 'react-native';
 
-import useStyles from './styles';
+import useSquareButtonStyles from './styles';
 import { SquareButtonProps } from './types';
 
 const SquareButton = ({ title, onPress, disabled }: SquareButtonProps) => {
-  const styles = useStyles();
+  const styles = useSquareButtonStyles();
 
   const buttonStyles: StyleProp<ViewStyle> = [styles.button];
   if (disabled) buttonStyles.push(styles.disable);

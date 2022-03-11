@@ -1,12 +1,7 @@
-import { StyleSheet } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import useStyles from '../../hooks/useStyles';
 
-import sizes from '../../constans/sizes';
-
-import { ThemeColors, Theme } from '../../theme/types';
-
-const getStyles = ({ colors }: { colors: ThemeColors }) =>
-  StyleSheet.create({
+const useSquareButtonStyles = () =>
+  useStyles((colors, sizes) => ({
     button: {
       alignItems: 'center',
       justifyContent: 'center',
@@ -26,8 +21,6 @@ const getStyles = ({ colors }: { colors: ThemeColors }) =>
       borderColor: colors.bgSecondary,
       backgroundColor: colors.bgPrimary,
     },
-  });
+  }));
 
-const useStyles = () => getStyles(useTheme() as unknown as Theme);
-
-export default useStyles;
+export default useSquareButtonStyles;

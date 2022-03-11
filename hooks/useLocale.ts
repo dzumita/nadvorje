@@ -3,10 +3,10 @@ import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 
 import translations from '../translations';
-import { useLocaleFunction } from './types';
+import { UseLocaleFunction } from './types';
 import { LocaleNames } from '../translations/types';
 
-const useLocale: useLocaleFunction = () => {
+const useLocale: UseLocaleFunction = () => {
   const [locale, setLocale] = useState(Localization.locale);
 
   i18n.translations = translations;
