@@ -1,8 +1,8 @@
-import { ThemeType } from '../../theme';
+import { ThemeNames } from '../../theme/types';
 
-type ThemePanelType = {
-  currentTheme: ThemeType;
-  changeTheme: (theme: ThemeType) => void;
+type ThemePanelProps = {
+  currentTheme: ThemeNames;
+  changeTheme: (theme: ThemeNames) => void;
 };
 
-export { ThemePanelType };
+export { ThemePanelProps };

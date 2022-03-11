@@ -3,7 +3,9 @@ import { useTheme } from '@react-navigation/native';
 
 import sizes from '../../constans/sizes';
 
-const getStyles = ({ colors }: any) =>
+import { ThemeColors, Theme } from '../../theme/types';
+
+const getStyles = ({ colors }: { colors: ThemeColors }) =>
   StyleSheet.create({
     button: {
       alignItems: 'center',
@@ -26,6 +28,6 @@ const getStyles = ({ colors }: any) =>
     },
   });
 
-const useStyles = () => getStyles(useTheme());
+const useStyles = () => getStyles(useTheme() as unknown as Theme);
 
 export default useStyles;

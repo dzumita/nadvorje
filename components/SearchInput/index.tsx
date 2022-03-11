@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import { TextInput } from 'react-native';
 
-import { SearchInputType } from './types';
-
+import { SearchInputProps } from './types';
 import useStyles from './styles';
 
 const SearchInput = ({
   placeholder,
   defaultValue,
   onSubmit,
-}: SearchInputType) => {
+}: SearchInputProps) => {
   const styles = useStyles();
 
   const [value, setValue] = useState(defaultValue);
 
-  const handleChangeText = (newValue: string): void => setValue(newValue);
-  const handleSubmitEditing = (): void => {
+  const handleChangeText = (newValue: string) => setValue(newValue);
+  const handleSubmitEditing = () => {
     if (!value) return;
 
     onSubmit(value);

@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
+import { Text } from 'react-native';
+import { NavigationContainer, Theme } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 import {
   createDrawerNavigator,
   DrawerNavigationOptions,
 } from '@react-navigation/drawer';
-import { Text } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
 import i18n from 'i18n-js';
 
-import NadvorjePage from './pages/Nadvorje';
-import SettingsPage from './pages/Settings';
-import { LocalePanelType } from './components/LocalPanel/types';
-import useTheme from './hooks/useTheme';
-import useLocale from './hooks/useLocale';
+import { NadvorjePage, SettingsPage } from './pages';
+import { useTheme, useLocale } from './hooks';
+import { ThemeColors } from './theme/types';
 
 const { Screen, Navigator } = createDrawerNavigator();
 
@@ -24,7 +22,7 @@ const App = () => {
   const optionsStyles = getOptionsStyles(theme);
 
   return (
-    <NavigationContainer theme={theme}>
+    <NavigationContainer theme={theme as unknown as Theme | undefined}>
       <StatusBar style={theme.dark ? 'light' : 'dark'} />
 
       <Navigator screenOptions={optionsStyles as DrawerNavigationOptions}>
@@ -46,7 +44,7 @@ const App = () => {
         >
           {() => (
             <SettingsPage
-              currentLocale={locale as LocalePanelType['currentLocale']}
+              currentLocale={locale}
               changeLocale={setLocale}
               currentTheme={theme.name}
               changeTheme={setTheme}
@@ -58,17 +56,14 @@ const App = () => {
   );
 };
 
-const getOptionsStyles = ({ colors }: any) => {
+const getOptionsStyles = ({ colors }: { colors: ThemeColors }) => {
   return {
-    drawerItemStyle: {
-      color: colors.white,
-    },
     drawerActiveTintColor: colors.fontPrimary,
-    drawerActiveBackgroundColor: 'transparent',
+    drawerActiveBackgroundColor: colors.bgSecondary,
     drawerInactiveTintColor: colors.fontSecondary,
     drawerInactiveBackgroundColor: 'transparent',
     drawerStyle: {
-      backgroundColor: colors.bgSecondary,
+      backgroundColor: colors.bgPrimary,
     },
     headerTitleAlign: 'center',
     headerStyle: {

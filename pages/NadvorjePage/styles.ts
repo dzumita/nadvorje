@@ -1,7 +1,9 @@
 import { Platform, StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
-const getStyles = ({ colors }: any) =>
+import { ThemeColors } from '../../theme/types';
+
+const getStyles = ({ colors }: { colors: ThemeColors }) =>
   StyleSheet.create({
     container: {
       flex: 1,
@@ -22,6 +24,7 @@ const getStyles = ({ colors }: any) =>
     },
   });
 
-const useStyles = () => getStyles(useTheme());
+const useStyles = () =>
+  getStyles(useTheme() as unknown as { colors: ThemeColors });
 
 export default useStyles;

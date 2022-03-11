@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useColorScheme } from 'react-native';
 
 import theme from '../theme';
-import { useThemeType } from './types';
+import { useThemeFunction } from './types';
 
-const useTheme = (): useThemeType => {
+const useTheme: useThemeFunction = () => {
   const [currentTheme, setCurrentTheme] = useState(useColorScheme());
 
-  return [theme[currentTheme], setCurrentTheme];
+  return [theme[currentTheme ?? 'light'], setCurrentTheme];
 };
 
 export default useTheme;

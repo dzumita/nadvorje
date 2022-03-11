@@ -1,5 +1,9 @@
-import { ThemeType, ThemeNameType } from '../theme/types';
+import { Theme, ThemeNames } from '../theme/types';
+import { LocaleNames } from '../translations/types';
 
-type useThemeType = () => [ThemeType, (ThemeName: ThemeNameType) => void];
+type useThemeFunction = () => [Theme, (ThemeName: ThemeNames) => void];
+type useLocaleFunction = () => [
+  LocaleNames, (LocaleName: LocaleNames) => void
+];
 
-export { useThemeType };
+export { useThemeFunction, useLocaleFunction };

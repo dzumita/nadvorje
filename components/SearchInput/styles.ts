@@ -2,12 +2,10 @@ import { StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 import sizes from '../../constans/sizes';
-import { ThemeType } from '../../theme/types';
+import { ThemeColors, Theme } from '../../theme/types';
 
-const getStyles = (theme: ThemeType) => {
-  const { colors } = theme;
-
-  return StyleSheet.create({
+const getStyles = ({ colors }: { colors: ThemeColors }) =>
+  StyleSheet.create({
     textInput: {
       backgroundColor: colors.bgSecondary,
       color: colors.fontPrimary,
@@ -21,10 +19,9 @@ const getStyles = (theme: ThemeType) => {
       borderRadius: sizes.borderRadius,
     },
   });
-};
 
 const useStyles = () => {
-  const theme = useTheme();
+  const theme = useTheme() as unknown as Theme;
 
   return {
     style: getStyles(theme).textInput,

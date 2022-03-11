@@ -1,12 +1,19 @@
 import React from 'react';
-import { Text, TouchableWithoutFeedback, View } from 'react-native';
+import {
+  StyleProp,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle,
+} from 'react-native';
 
 import useStyles from './styles';
+import { SquareButtonProps } from './types';
 
-const SquareButton = ({ title, onPress, disabled }: any) => {
+const SquareButton = ({ title, onPress, disabled }: SquareButtonProps) => {
   const styles = useStyles();
 
-  const buttonStyles = [styles.button];
+  const buttonStyles: StyleProp<ViewStyle> = [styles.button];
   if (disabled) buttonStyles.push(styles.disable);
 
   return (

@@ -1,8 +1,8 @@
-import translations from '../../translations';
+import { LocaleNames } from '../../translations/types';
 
-type LocalePanelType = {
-  changeLocale: (locale: string) => void;
-  currentLocale: keyof typeof translations;
+type LocalePanelProps = {
+  changeLocale: (locale: LocaleNames) => void;
+  currentLocale: LocaleNames;
 };
 
-export { LocalePanelType };
+export { LocalePanelProps };

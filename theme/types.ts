@@ -1,8 +1,8 @@
 import theme from '.';
 import dark from './dark';
 
-type ThemeType = typeof theme;
-type ThemeNameType = keyof typeof theme | undefined | null;
-type ThemeColorsType = typeof dark.colors;
+type Theme = typeof dark;
+type ThemeNames = keyof typeof theme | undefined | null;
+type ThemeColors = typeof dark.colors;
 
-export { ThemeType, ThemeNameType, ThemeColorsType };
+export { Theme, ThemeNames, ThemeColors };

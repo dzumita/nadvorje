@@ -1,9 +1,7 @@
-import { ThemeColorsType } from '../../theme/types';
-
-type SearchInputType = {
+type SearchInputProps = {
   placeholder: string;
   defaultValue?: string | undefined;
   onSubmit: (value: string) => void;
 };
 
-export { SearchInputType };
+export { SearchInputProps };
