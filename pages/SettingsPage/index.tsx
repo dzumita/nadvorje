@@ -5,7 +5,7 @@ import i18n from 'i18n-js';
 import LocalePanel from '../../components/LocalPanel';
 import ThemePanel from '../../components/ThemePanel';
 
-import useStyles from './styles';
+import useSettingsPageStyles from './styles';
 
 const SettingsPage = ({
   currentLocale,
@@ -13,7 +13,7 @@ const SettingsPage = ({
   currentTheme,
   changeTheme,
 }: any) => {
-  const styles = useStyles();
+  const styles = useSettingsPageStyles();
 
   return (
     <View style={styles.container}>

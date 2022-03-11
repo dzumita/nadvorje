@@ -1,39 +1,33 @@
 import React, { Fragment } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import SquareButton from '../SquareButton';
-import sizes from '../../constans/sizes';
-
-import { ThemePanelProps } from './types';
 import { ThemeNames } from '../../theme/types';
+
+import useThemePanelStyles from './styles';
+import { ThemePanelProps } from './types';
 
 const themes = {
   dark: '🌕',
   light: '☀️',
 };
 
-const ThemePanel = ({ currentTheme, changeTheme }: ThemePanelProps) => (
-  <View style={styles.container}>
-    {Object.keys(themes).map((theme) => (
-      <Fragment key={theme}>
-        <SquareButton
-          title={themes[theme as keyof typeof themes]}
-          onPress={() => changeTheme(theme as ThemeNames)}
-          disabled={currentTheme === theme}
-        />
-        <View style={styles.gap} />
-      </Fragment>
-    ))}
-  </View>
-);
+const ThemePanel = ({ currentTheme, changeTheme }: ThemePanelProps) => {
+  const styles = useThemePanelStyles();
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-  },
-  gap: {
-    width: sizes.gap,
-  },
-});
-
+  return (
+    <View style={styles.container}>
+      {Object.keys(themes).map((theme) => (
+        <Fragment key={theme}>
+          <SquareButton
+            title={themes[theme as keyof typeof themes]}
+            onPress={() => changeTheme(theme as ThemeNames)}
+            disabled={currentTheme === theme}
+          />
+          <View style={styles.gap} />
+        </Fragment>
+      ))}
+    </View>
+  );
+};
 export default ThemePanel;

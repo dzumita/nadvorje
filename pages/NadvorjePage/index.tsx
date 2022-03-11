@@ -10,10 +10,10 @@ import i18n from 'i18n-js';
 import SearchInput from '../../components/SearchInput';
 import { fetchLocationId, fetchWeather } from '../../utils/api';
 
-import useStyles from './styles';
+import useNadvorjePageStyles from './styles';
 
 const NadvorjePage = () => {
-  const styles = useStyles();
+  const styles = useNadvorjePageStyles();
 
   const [location, setLocation] = useState('Minsk');
   const [weatherAbbr, setWeatherAbbr] = useState('sn');

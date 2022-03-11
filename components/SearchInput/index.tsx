@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { TextInput } from 'react-native';
 
 import { SearchInputProps } from './types';
-import useStyles from './styles';
+import useSearchInputStyles from './styles';
 
 const SearchInput = ({
   placeholder,
   defaultValue,
   onSubmit,
 }: SearchInputProps) => {
-  const styles = useStyles();
+  const styles = useSearchInputStyles();
 
   const [value, setValue] = useState(defaultValue);
 

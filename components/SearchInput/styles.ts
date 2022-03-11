@@ -1,11 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { useStyles } from '../../hooks';
 import { useTheme } from '@react-navigation/native';
+import { Theme } from '../../theme/types';
 
-import sizes from '../../constans/sizes';
-import { ThemeColors, Theme } from '../../theme/types';
-
-const getStyles = ({ colors }: { colors: ThemeColors }) =>
-  StyleSheet.create({
+const useTextInputStyles = () =>
+  useStyles((colors, sizes) => ({
     textInput: {
       backgroundColor: colors.bgSecondary,
       color: colors.fontPrimary,
@@ -18,16 +16,17 @@ const getStyles = ({ colors }: { colors: ThemeColors }) =>
       alignSelf: 'center',
       borderRadius: sizes.borderRadius,
     },
-  });
+  }));
 
-const useStyles = () => {
+const useSearchInputStyles = () => {
   const theme = useTheme() as unknown as Theme;
+  const textInputStyles = useTextInputStyles();
 
   return {
-    style: getStyles(theme).textInput,
+    style: textInputStyles.textInput,
     underlineColorAndroid: 'transparent',
     placeholderTextColor: theme.colors.fontSecondary,
   };
 };
 
-export default useStyles;
+export default useSearchInputStyles;

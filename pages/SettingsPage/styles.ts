@@ -1,10 +1,8 @@
-import { Platform, StyleSheet } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { Platform } from 'react-native';
+import { useStyles } from '../../hooks';
 
-import { ThemeColors } from '../../theme/types';
-
-const getStyles = ({ colors }: { colors: ThemeColors }) =>
-  StyleSheet.create({
+const useSettingsPageStyles = () =>
+  useStyles((colors) => ({
     container: {
       flex: 1,
       justifyContent: 'flex-start',
@@ -22,9 +20,6 @@ const getStyles = ({ colors }: { colors: ThemeColors }) =>
     gap: {
       height: 30,
     },
-  });
+  }));
 
-const useStyles = () =>
-  getStyles(useTheme() as unknown as { colors: ThemeColors });
-
-export default useStyles;
+export default useSettingsPageStyles;

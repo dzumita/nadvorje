@@ -1,10 +1,9 @@
-import { Platform, StyleSheet } from 'react-native';
-import { useTheme } from '@react-navigation/native';
+import { Platform } from 'react-native';
 
-import { ThemeColors } from '../../theme/types';
+import { useStyles } from '../../hooks';
 
-const getStyles = ({ colors }: { colors: ThemeColors }) =>
-  StyleSheet.create({
+const useNadvorjePageStyles = () =>
+  useStyles((colors) => ({
     container: {
       flex: 1,
       justifyContent: 'center',
@@ -22,9 +21,6 @@ const getStyles = ({ colors }: { colors: ThemeColors }) =>
     smallText: {
       fontSize: 18,
     },
-  });
+  }));
 
-const useStyles = () =>
-  getStyles(useTheme() as unknown as { colors: ThemeColors });
-
-export default useStyles;
+export default useNadvorjePageStyles;
