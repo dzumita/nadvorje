@@ -2,8 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import i18n from 'i18n-js';
 
-import LocalePanel from '../../components/LocalPanel';
-import ThemePanel from '../../components/ThemePanel';
+import LocalePanel from '@components/LocalPanel';
+import ThemePanel from '@components/ThemePanel';
 
 import useSettingsPageStyles from './styles';
 import { SettingsPageProps } from './types';

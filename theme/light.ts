@@ -1,4 +1,4 @@
-import colors from '../constans/colors';
+import { colors } from '@constants';
 
 const light = {
   name: 'light',

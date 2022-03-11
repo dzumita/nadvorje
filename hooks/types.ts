@@ -1,6 +1,6 @@
-import { SizesConstant } from '../constans/types';
-import { Theme, ThemeNames, ThemeColors } from '../theme/types';
-import { LocaleNames } from '../translations/types';
+import { SizesConstant } from '@constants/types';
+import { Theme, ThemeNames, ThemeColors } from '@theme/types';
+import { LocaleNames } from '@translations/types';
 
 type UseThemeFunction = () => [Theme, (ThemeName: ThemeNames) => void];
 type UseLocaleFunction = () => [LocaleNames, (LocaleName: LocaleNames) => void];

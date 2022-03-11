@@ -1,4 +1,4 @@
-import { LocaleNames } from '../../translations/types';
+import { LocaleNames } from '@translations/types';
 
 type LocalePanelProps = {
   changeLocale: (locale: LocaleNames) => void;

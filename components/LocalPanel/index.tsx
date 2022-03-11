@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { View } from 'react-native';
 
-import translations from '../../translations';
-import SquareButton from '../SquareButton';
-import { LocaleNames } from '../../translations/types';
+import translations from '@translations';
+import SquareButton from '@components/SquareButton';
+import { LocaleNames } from '@translations/types';
 
 import useLocalPanelStyles from './styles';
 import { LocalePanelProps } from './types';

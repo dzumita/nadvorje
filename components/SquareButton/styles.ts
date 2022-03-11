@@ -1,4 +1,4 @@
-import { useStyles } from '../../hooks';
+import { useStyles } from '@hooks';
 
 const useSquareButtonStyles = () =>
   useStyles((colors, sizes) => ({

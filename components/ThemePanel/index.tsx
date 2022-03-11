@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { View } from 'react-native';
 
-import SquareButton from '../SquareButton';
-import { ThemeNames } from '../../theme/types';
+import SquareButton from '@components/SquareButton';
+import { ThemeNames } from '@theme/types';
 
 import useThemePanelStyles from './styles';
 import { ThemePanelProps } from './types';

@@ -7,8 +7,8 @@ import {
 } from 'react-native';
 import i18n from 'i18n-js';
 
-import SearchInput from '../../components/SearchInput';
-import { fetchLocationId, fetchWeather } from '../../utils/api';
+import SearchInput from '@components/SearchInput';
+import { fetchLocationId, fetchWeather } from '@helpers/api';
 
 import useNadvorjePageStyles from './styles';
 

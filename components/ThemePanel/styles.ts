@@ -1,4 +1,4 @@
-import { useStyles } from '../../hooks';
+import { useStyles } from '@hooks';
 
 const useThemePanelStyles = () =>
   useStyles((_, sizes) => ({

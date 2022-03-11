@@ -9,9 +9,9 @@ import {
 } from '@react-navigation/drawer';
 import i18n from 'i18n-js';
 
-import { NadvorjePage, SettingsPage } from './pages';
-import { useTheme, useLocale } from './hooks';
-import { ThemeColors } from './theme/types';
+import { NadvorjePage, SettingsPage } from '@pages';
+import { useTheme, useLocale } from '@hooks';
+import { ThemeColors, ThemeNames } from '@theme/types';
 
 const { Screen, Navigator } = createDrawerNavigator();
 
@@ -46,7 +46,7 @@ const App = () => {
             <SettingsPage
               currentLocale={locale}
               changeLocale={setLocale}
-              currentTheme={theme.name}
+              currentTheme={theme.name as ThemeNames}
               changeTheme={setTheme}
             />
           )}

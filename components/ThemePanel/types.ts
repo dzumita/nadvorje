@@ -1,4 +1,4 @@
-import { ThemeNames } from '../../theme/types';
+import { ThemeNames } from '@theme/types';
 
 type ThemePanelProps = {
   currentTheme: ThemeNames;

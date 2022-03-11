@@ -1,5 +1,5 @@
 import { Platform } from 'react-native';
-import { useStyles } from '../../hooks';
+import { useStyles } from '@hooks';
 
 const useSettingsPageStyles = () =>
   useStyles((colors) => ({

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useColorScheme } from 'react-native';
 
-import theme from '../theme';
+import theme from '@theme';
 import { UseThemeFunction } from './types';
 
 const useTheme: UseThemeFunction = () => {

@@ -1,6 +1,7 @@
-import { useStyles } from '../../hooks';
 import { useTheme } from '@react-navigation/native';
-import { Theme } from '../../theme/types';
+
+import { Theme } from '@theme/types';
+import { useStyles } from '@hooks';
 
 const useTextInputStyles = () =>
   useStyles((colors, sizes) => ({
