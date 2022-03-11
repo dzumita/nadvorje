@@ -5,7 +5,7 @@ import sizes from '../../constans/sizes';
 import { ThemeType } from '../../theme/types';
 
 const getStyles = (theme: ThemeType) => {
-  const [colors] = theme;
+  const { colors } = theme;
 
   return StyleSheet.create({
     textInput: {

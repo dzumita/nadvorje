@@ -3,7 +3,7 @@ import { Text, TouchableWithoutFeedback, View } from 'react-native';
 
 import useStyles from './styles';
 
-const Button = ({ title, onPress, disabled }: any) => {
+const SquareButton = ({ title, onPress, disabled }: any) => {
   const styles = useStyles();
 
   const buttonStyles = [styles.button];
@@ -18,4 +18,4 @@ const Button = ({ title, onPress, disabled }: any) => {
   );
 };
 
-export default Button;
+export default SquareButton;

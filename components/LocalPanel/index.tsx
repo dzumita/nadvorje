@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import translations from '../../translations';
-import Button from '../Button';
+import SquareButton from '../SquareButton';
 import sizes from '../../constans/sizes';
 
 import { LocalePanelType } from './types';
@@ -12,7 +12,7 @@ const LocalePanel = ({ changeLocale, currentLocale }: LocalePanelType) => {
     <View style={styles.container}>
       {Object.keys(translations).map((locale) => (
         <Fragment key={locale}>
-          <Button
+          <SquareButton
             title={locale}
             onPress={() => changeLocale(locale)}
             disabled={currentLocale.slice(0, 2) === locale}
